@@ -6,12 +6,9 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useNavigate } from 'react-router-dom';
-import { apiGetChampionshipData } from '../api/api';
 import ChampionshipResults from '../components/ChampionshipResults';
 
 export default function BrazilianChampionship() {
-  apiGetChampionshipData(2008);
-
   const navigate = useNavigate();
 
   const FIRST_YEAR = 2003;

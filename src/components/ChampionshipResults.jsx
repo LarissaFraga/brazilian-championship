@@ -10,6 +10,7 @@ import Paper from '@mui/material/Paper';
 import { useEffect, useState } from 'react';
 import { apiGetChampionshipData } from '../api/api';
 import { ClipLoader } from 'react-spinners';
+import { useNavigate } from 'react-router-dom';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,7 +34,15 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 export default function ResultsChampionship() {
   const { pathname } = useLocation();
-  const year = pathname.substring(1);
+  let year = pathname.substring(1);
+
+  const navigate = useNavigate();
+
+  if (!year) {
+    year = 2003;
+    navigate('/2003');
+  }
+  console.log(year);
 
   const [championshipData, setChampionshipData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +60,7 @@ export default function ResultsChampionship() {
   if (loading) {
     return (
       <div className="mt-4 text-center">
-        <ClipLoader />;
+        <ClipLoader />
       </div>
     );
   }
